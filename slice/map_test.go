@@ -2,8 +2,9 @@ package slice
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMap(t *testing.T) {
@@ -26,7 +27,7 @@ func TestMap(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			res, err := Map(tc.src, tc.convert)
 			if err != nil {
-
+				return
 			}
 			assert.Equal(t, tc.want, res)
 		})

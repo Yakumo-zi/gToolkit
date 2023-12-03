@@ -22,7 +22,7 @@ func DeleteIndex[T any](src []T, idx uint) ([]T, error) {
 		return src, err
 	}
 	if len(src) <= int(idx) {
-		return src, errors.New(fmt.Sprintf("idx %d is out of length %d \n", idx, len(src)))
+		return src, fmt.Errorf("idx %d is out of length %d ", idx, len(src))
 	}
 	res := append(src[:idx], src[idx+1:]...)
 	return res, nil
@@ -38,7 +38,7 @@ func DeleteValue[T comparable](src []T, value T) ([]T, error) {
 			return DeleteIndex(src, uint(i))
 		}
 	}
-	return src, errors.New(fmt.Sprintf("slice is not contains element %+v", value))
+	return src, fmt.Errorf("slice is not contains element %+v", value)
 }
 
 // DeleteWithFunc 通过传入一个过滤函数来删除且片中的元素，删除满足过滤函数的第一个元素
@@ -48,7 +48,7 @@ func DeleteWithFunc[T comparable](src []T, filter func(i int, src []T) bool) ([]
 	if err := checkSlice(src); err != nil {
 		return src, err
 	}
-	for i, _ := range src {
+	for i := range src {
 		if filter(i, src) {
 			return DeleteIndex(src, uint(i))
 		}

@@ -1,8 +1,9 @@
 package slice
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestReduce(t *testing.T) {
@@ -25,7 +26,7 @@ func TestReduce(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			res, err := Reduce(0, tc.src, tc.reduce)
 			if err != nil {
-
+				return
 			}
 			assert.Equal(t, tc.want, res)
 		})

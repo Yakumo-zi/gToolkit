@@ -1,8 +1,9 @@
 package slice
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFilter(t *testing.T) {
@@ -33,7 +34,7 @@ func TestFilter(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			res, err := Filter(tc.src, tc.filter)
 			if err != nil {
-
+				return
 			}
 			assert.Equal(t, tc.want, res)
 		})

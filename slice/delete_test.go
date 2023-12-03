@@ -3,8 +3,9 @@ package slice
 import (
 	"errors"
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestDeleteIndex(t *testing.T) {
@@ -41,7 +42,7 @@ func TestDeleteIndex(t *testing.T) {
 			src:         []int{1, 2, 3, 4, 5},
 			deleteIndex: 10,
 			want:        []int{1, 2, 3, 4, 5},
-			wantErr:     errors.New(fmt.Sprintf("idx %d is out of length %d \n", 10, 5)),
+			wantErr:     fmt.Errorf("idx %d is out of length %d \n", 10, 5),
 		},
 	}
 
@@ -90,7 +91,7 @@ func TestDeleteValue(t *testing.T) {
 			src:         []int{1, 2, 3, 4, 5},
 			deleteValue: 10,
 			want:        []int{1, 2, 3, 4, 5},
-			wantErr:     errors.New(fmt.Sprintf("slice is not contains element %+v", 10)),
+			wantErr:     fmt.Errorf("slice is not contains element %+v", 10),
 		},
 	}
 
